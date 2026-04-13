@@ -11,33 +11,43 @@ const App = () => {
     try {
       const response = await fetch('https://itunes.apple.com/search?term=pop&entity=song&limit=25')
       const data = await response.json()
-      setJoke(data)
+      const results = data.results
+      const randomIndex = Math.floor(Math.random() * results.length)
+      const randomSong = results[randomIndex]
+      setSong(randomSong)
     } catch (error) {
-      console.error('Failed to fetch joke:', error)
+      console.error('Failed to fetch song:', error)
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchJoke()
+    fetchRandomSong()
   }, [])
 
   return (
     <div className="app">
-      <h1>Joke App</h1>
+      <h1>Music App</h1>
 
-      <button onClick={fetchJoke} disabled={loading}>
-        {loading ? 'Loading...' : 'Get a Joke'}
+      <button onClick={fetchRandomSong} disabled={loading}>
+        {loading ? 'Loading...' : 'Get a Random Song'}
       </button>
 
-      {loading && <p>Loading joke...</p>}
+      {loading && <p>Loading song...</p>}
 
-      {joke && !loading && (
+      {song && !loading && (
         <div className="joke-card">
-          <span className="joke-type">{joke.type}</span>
-          <p className="setup">{joke.setup}</p>
-          <p className="punchline">{joke.punchline}</p>
+          <p className="setup">{song.trackName}</p>
+            <img
+            src={song.artworkUrl100}
+            alt={`Album art for ${song.trackName}`}
+            />
+          <p className="punchline">{song.artistName}</p>
+
+          <audio controls src={song.previewUrl}>
+            Your browser does not support the audio element.
+          </audio>
         </div>
       )}
     </div>

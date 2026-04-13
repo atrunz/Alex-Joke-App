@@ -85,3 +85,17 @@ body {
   color: #bbf7d0;
   font-style: italic;
 }
+
+.joke-card img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0.75rem 0 1rem 0;
+}
+
+.joke-card audio {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
