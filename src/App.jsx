@@ -4,12 +4,26 @@ import './App.css'
 const App = () => {
   const [song, setSong] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('pop')
+
+
+  const searchTerms = [
+  'pop',
+  'rock',
+  'indie',
+  'hip hop',
+  'jazz',
+  'electronic',
+  'alternative',
+  'r&b'
+]
+
 
   const fetchRandomSong = async () => {
     setLoading(true)
 
     try {
-      const response = await fetch('https://itunes.apple.com/search?term=pop&entity=song&limit=25')
+      const response = await fetch(`https://itunes.apple.com/search?term=${searchTerm}&entity=song&limit=35`)
       const data = await response.json()
       const results = data.results
       const randomIndex = Math.floor(Math.random() * results.length)
@@ -22,6 +36,14 @@ const App = () => {
     }
   }
 
+const changePool = () => {
+  const randomTerm =
+    searchTerms[Math.floor(Math.random() * searchTerms.length)]
+
+  setSearchTerm(randomTerm)
+  fetchRandomSong()
+}
+
   useEffect(() => {
     fetchRandomSong()
   }, [])
@@ -30,9 +52,15 @@ const App = () => {
     <div className="app">
       <h1>Music App</h1>
 
-      <button onClick={fetchRandomSong} disabled={loading}>
-        {loading ? 'Loading...' : 'Get a Random Song'}
-      </button>
+      <div className="button-group">
+        <button onClick={fetchRandomSong} disabled={loading}>
+          {loading ? 'Loading...' : 'Get Song'}
+        </button>
+
+        <button onClick={changePool}>
+          Change Pool
+        </button>
+      </div>
 
       {loading && <p className="loading-text">Loading song...</p>}
       {song && !loading && (
