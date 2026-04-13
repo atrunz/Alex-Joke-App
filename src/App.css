@@ -50,7 +50,7 @@ body {
   cursor: not-allowed;
 }
 
-.joke-card {
+.music-card {
   width: 100%;
   max-width: 360px;
   padding: 1.25rem;
@@ -64,7 +64,7 @@ body {
   align-items: center;
 }
 
-.setup {
+.track-name {
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.35;
@@ -72,15 +72,14 @@ body {
   margin: 0 0 0.35rem 0;
 }
 
-.punchline {
+.artist-name {
   font-size: 0.95rem;
   line-height: 1.4;
   color: #a7f3c5;
   margin: 0 0 1rem 0;
-  font-style: normal;
 }
 
-.joke-card img {
+.album-art {
   width: 220px;
   height: 220px;
   object-fit: cover;
@@ -89,7 +88,7 @@ body {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }
 
-.joke-card audio {
+.audio-player {
   width: 100%;
   margin-top: 0.25rem;
 }

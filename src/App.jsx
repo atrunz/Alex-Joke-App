@@ -36,22 +36,24 @@ const App = () => {
 
       {loading && <p className="loading-text">Loading song...</p>}
       {song && !loading && (
-        <div className="joke-card">
-          <p className="setup">{song.trackName}</p>
-          <p className="punchline">{song.artistName}</p>
+        <div className="music-card">
+        <p className="track-name">{song.trackName}</p>
+        <p className="artist-name">{song.artistName}</p>
 
-          <img
-            src={song.artworkUrl100}
-            alt={`Album art for ${song.trackName}`}
-          />
+        <img
+          className="album-art"
+          src={song.artworkUrl100}
+          alt={`Album art for ${song.trackName}`}
+        />
 
-          <audio controls src={song.previewUrl}>
-            Your browser does not support the audio element.
-          </audio>
-       </div>
+        <audio className="audio-player" controls src={song.previewUrl}>
+          Your browser does not support the audio element.
+        </audio>
+      </div>
       )}
     </div>
   )
 }
 
 export default App
+
